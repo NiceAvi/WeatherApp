@@ -19,7 +19,7 @@ class WeatherController extends Controller
     public function showWeather(Request $request, OpenWeather $openWeather)
     {
         $request->validate([
-            'city' => 'required|alpha:ascii',
+            'city' => 'required|regex:/^[\pL\s]+$/u',
         ]);
 
         $weatherData = $openWeather->getCurrentWeatherByCityName($request->city, "metric");

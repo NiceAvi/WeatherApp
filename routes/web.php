@@ -16,14 +16,16 @@ use App\Http\Controllers\FavoriteLocationController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('weather.view');
 });
+
+Route::post('/weather', [WeatherController::class, 'showWeather'])->name('weather_show');
 
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/weather', [WeatherController::class, 'weatherView'])->name('weather_view');
-    Route::post('/weather', [WeatherController::class, 'showWeather'])->name('weather_show');
     Route::post('/favorite-locations', [FavoriteLocationController::class, 'store'])->name('favorite-locations.store');
     Route::get('/favorite-locations', [FavoriteLocationController::class, 'index'])->name('favorite-locations.index');
+    Route::delete('/favorite-locations/{favoriteLocation}', [FavoriteLocationController::class, 'destroy'])->name('favorite-locations.destroy');
 });

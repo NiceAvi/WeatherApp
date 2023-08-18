@@ -6,6 +6,7 @@
             <div class="row mt-5">
                 <div class="col-md-6 offset-md-3">
                     <h2 class="mb-4">Weather Data</h2>
+                  
                     @if ($weatherData)
                         <div class="card text-center">
                             <div class="card-header">
